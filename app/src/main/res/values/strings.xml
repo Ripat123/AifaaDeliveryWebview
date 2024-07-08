@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AIFAA ON TIME DELIVERY</string>
     <string name="Website_Link">https://aifaabestotds.com/employeelogin</string>
+    <string name="qatar_id">Qatar ID Number</string>
+    <string name="login">Login</string>
+    <string name="birthdate">Date of Birth</string>
 </resources>
