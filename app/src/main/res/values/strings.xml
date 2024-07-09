@@ -4,4 +4,5 @@
     <string name="qatar_id">Qatar ID Number</string>
     <string name="login">Login</string>
     <string name="birthdate">Date of Birth</string>
+    <string name="type">Type</string>
 </resources>
