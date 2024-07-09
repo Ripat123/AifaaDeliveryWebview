@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "971063655516",
+    "firebase_url": "https://eub-blood-donation-default-rtdb.firebaseio.com",
+    "project_id": "eub-blood-donation",
+    "storage_bucket": "eub-blood-donation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971063655516:android:b4d2171a86e1af2ebd7a99",
+        "android_client_info": {
+          "package_name": "com.Ariyan.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971063655516-3q4l6263mggsh75ih3vu0t9717brmncb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEyiplDhvEQktG_jJFIYk4sfZjOQDk0iE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971063655516-3q4l6263mggsh75ih3vu0t9717brmncb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971063655516:android:99314c795f1b5147bd7a99",
+        "android_client_info": {
+          "package_name": "com.example.blood_donation_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971063655516-3q4l6263mggsh75ih3vu0t9717brmncb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEyiplDhvEQktG_jJFIYk4sfZjOQDk0iE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971063655516-3q4l6263mggsh75ih3vu0t9717brmncb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
