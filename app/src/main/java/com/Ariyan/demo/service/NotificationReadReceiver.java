@@ -3,6 +3,8 @@ package com.Ariyan.demo.service;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
@@ -52,12 +54,19 @@ public class NotificationReadReceiver extends FirebaseMessagingService {
             String body = remoteMessage.getNotification().getBody();
 
             // Create a notification (you can customize this)
+            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             NotificationCompat.Builder notificationBuilder =
                     new NotificationCompat.Builder(this, CHANNEL_ID)
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setContentTitle(title)
                             .setContentText(body)
-                            .setAutoCancel(true);
+                            .setAutoCancel(false)
+                            .setSound(defaultSoundUri)
+                            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                            .setPriority(NotificationCompat.PRIORITY_MAX)
+                            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                            .setDefaults(NotificationCompat.DEFAULT_VIBRATE)
+                            .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL);
 
             // Alternatively, you can handle data payloads from the message here
 
