@@ -2,6 +2,7 @@ package com.Ariyan.demo.service;
 
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -16,19 +17,23 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import com.Ariyan.demo.R;
+import com.Ariyan.demo.controller.MyControl;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 public class NotificationReadReceiver extends FirebaseMessagingService {
     private static final String TAG = NotificationReadReceiver.class.getSimpleName();
     private static final int NOTIFICATION_ID = 505;
-    private static final String CHANNEL_ID = "delivery_ch";
-    private static final int REQUEST_CODE_NOTIFICATION_PERMISSION = 101;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onNewToken(@NonNull String token) {
         super.onNewToken(token);
         Log.d("FCM", "Refreshed token: " + token);
+        sharedPreferences = getSharedPreferences(MyControl.SHARED_DATA,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(MyControl.TOKEN,token);
+        editor.apply();
     }
 
     @Override
@@ -56,8 +61,8 @@ public class NotificationReadReceiver extends FirebaseMessagingService {
             // Create a notification (you can customize this)
             Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             NotificationCompat.Builder notificationBuilder =
-                    new NotificationCompat.Builder(this, CHANNEL_ID)
-                            .setSmallIcon(R.mipmap.ic_launcher)
+                    new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+                            .setSmallIcon(R.mipmap.ic_launcher_round)
                             .setContentTitle(title)
                             .setContentText(body)
                             .setAutoCancel(false)

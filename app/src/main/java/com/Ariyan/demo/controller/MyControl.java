@@ -16,6 +16,9 @@ public class MyControl {
     public final static int file_req_code = 1;
     public static String USER_AGENT = "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Mobile Safari/537.36";
     public static String LOAD_ERROR_REASON = "";
+    public final static String SHARED_DATA = "aifa_shared_data";
+    public final static String TOKEN = "token";
+    public final static String UID = "uid";
 
     public static boolean NETWORK_AVAILABLE = true;
     public static boolean FAILED_FOR_OTHER_REASON = false;
