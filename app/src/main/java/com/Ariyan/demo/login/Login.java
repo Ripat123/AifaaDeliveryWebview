@@ -3,6 +3,7 @@ package com.Ariyan.demo.login;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.Ariyan.demo.MainActivity;
 import com.Ariyan.demo.R;
+import com.Ariyan.demo.controller.MyControl;
 import com.Ariyan.demo.databinding.ActivityLoginBinding;
 
 public class Login extends AppCompatActivity {
@@ -26,6 +28,7 @@ public class Login extends AppCompatActivity {
     private LoginViewModel viewModel;
     private ActivityLoginBinding binding;
     private ProgressDialog progressDialog;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,10 @@ public class Login extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         binding.login.setOnClickListener(v -> {
             progressDialog = ProgressDialog.show(Login.this, "", "Loading", false);
+            sharedPreferences = getSharedPreferences(MyControl.SHARED_DATA,MODE_PRIVATE);
+            String token = sharedPreferences.getString(MyControl.TOKEN,"");
             viewModel.Login(binding.type.getText().toString(), binding.id.getText().toString(),
-                    binding.date.getText().toString()).observe(this, s -> {
+                    binding.date.getText().toString(),token).observe(this, s -> {
                 progressDialog.dismiss();
                 startActivity(new Intent(this, MainActivity.class));
             });
