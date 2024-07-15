@@ -8,6 +8,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -18,8 +19,17 @@ import androidx.core.content.ContextCompat;
 
 import com.Ariyan.demo.R;
 import com.Ariyan.demo.controller.MyControl;
+import com.Ariyan.demo.network.Api;
+import com.Ariyan.demo.network.RetrofitClient;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NotificationReadReceiver extends FirebaseMessagingService {
     private static final String TAG = NotificationReadReceiver.class.getSimpleName();
@@ -34,6 +44,24 @@ public class NotificationReadReceiver extends FirebaseMessagingService {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(MyControl.TOKEN,token);
         editor.apply();
+        String id = sharedPreferences.getString(MyControl.UID, "");
+        if (!id.isEmpty()){
+            Api api = RetrofitClient.getInstance();
+            Map<String, String> map = new HashMap<>();
+            map.put(MyControl.UID,id);
+            map.put(MyControl.TOKEN,token);
+            api.UpdateToken(map).enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    Toast.makeText(NotificationReadReceiver.this, response.body(), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable throwable) {
+                    Toast.makeText(NotificationReadReceiver.this, "Failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     @Override
